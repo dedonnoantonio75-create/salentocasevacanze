@@ -33,7 +33,7 @@ LOC_IMAGES = {
     'torre-dellorso': 'assets/img/opt/torredellorso.webp',
     'castro': 'assets/img/opt/castro.webp',
 }
-HERO_IMG = 'assets/img/opt/hero.webp'
+HERO_IMG = 'assets/img/opt/hero-1.webp'
 LOGO = 'assets/img/opt/logo3-1.png'
 
 # mappa città -> slug località (per collegare unità e guide)
@@ -353,7 +353,10 @@ def build_home(lang):
   <div class="loc-info"><h3>{esc(loc['name'][lang])}</h3>
   <span class="fake-link">{ui['discover']} →</span></div></a>"""
     out += f"""
-<section class="hero" style="background-image:url('{r}{HERO_IMG}')">
+<section class="hero hero-slideshow">
+  <div class="hero-slide active" style="background-image:url('{r}assets/img/opt/hero-1.webp')"></div>
+  <div class="hero-slide" style="background-image:url('{r}assets/img/opt/hero-2.webp')"></div>
+  <div class="hero-slide" style="background-image:url('{r}assets/img/opt/hero-3.webp')"></div>
   <div class="hero-content">
     <h1>{esc(h['hero_title'])}</h1>
     <p>{esc(h['hero_sub'])}</p>
@@ -362,6 +365,7 @@ def build_home(lang):
       <a class="btn btn-ghost" href="{r}{lr}{s['locations']}/">{ui['hero_cta_secondary']}</a>
     </div>
   </div>
+  <div class="hero-dots" role="tablist"></div>
   <div class="hero-scroll">▾</div>
 </section>
 <section class="section">

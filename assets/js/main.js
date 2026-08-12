@@ -85,6 +85,33 @@
     });
   }
 
+  // slideshow hero con dissolvenza + Ken Burns
+  var slides = document.querySelectorAll('.hero-slide');
+  if (slides.length > 1) {
+    var dotsWrap = document.querySelector('.hero-dots');
+    var current = 0, timer = null;
+    slides.forEach(function (_, i) {
+      var d = document.createElement('button');
+      d.setAttribute('aria-label', 'Slide ' + (i + 1));
+      if (i === 0) d.classList.add('active');
+      d.addEventListener('click', function () { goTo(i); restart(); });
+      dotsWrap.appendChild(d);
+    });
+    var dots = dotsWrap.querySelectorAll('button');
+    function goTo(i) {
+      slides[current].classList.remove('active');
+      dots[current].classList.remove('active');
+      current = (i + slides.length) % slides.length;
+      slides[current].classList.add('active');
+      dots[current].classList.add('active');
+    }
+    function restart() {
+      clearInterval(timer);
+      timer = setInterval(function () { goTo(current + 1); }, 6500);
+    }
+    restart();
+  }
+
   // banner privacy/cookie (solo informativo: nessun cookie di profilazione)
   var banner = document.getElementById('cookieBanner');
   if (banner) {

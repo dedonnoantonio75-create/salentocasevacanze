@@ -83,10 +83,35 @@ a:hover { color: var(--terra-dark); }
 .hero {
   position: relative; min-height: 82vh; display: flex; align-items: center;
   background-size: cover; background-position: center 65%; color: #fff;
+  overflow: hidden;
 }
 .hero::before {
-  content: ""; position: absolute; inset: 0;
+  content: ""; position: absolute; inset: 0; z-index: 2;
   background: linear-gradient(160deg, rgba(20,40,55,.62) 0%, rgba(20,40,55,.28) 55%, rgba(185,106,54,.30) 100%);
+}
+/* slideshow con effetto Ken Burns */
+.hero-slide {
+  position: absolute; inset: 0; background-size: cover; background-position: center;
+  opacity: 0; transition: opacity 1.6s ease-in-out; z-index: 1; will-change: opacity, transform;
+}
+.hero-slide.active { opacity: 1; animation: kenburns 8s ease-out forwards; }
+@keyframes kenburns {
+  from { transform: scale(1) translateY(0); }
+  to { transform: scale(1.1) translateY(-1.5%); }
+}
+.hero-content, .hero-scroll { z-index: 3; }
+.hero-dots {
+  position: absolute; bottom: 64px; left: 50%; transform: translateX(-50%);
+  display: flex; gap: 10px; z-index: 4;
+}
+.hero-dots button {
+  width: 11px; height: 11px; border-radius: 50%; border: 1.5px solid rgba(255,255,255,.85);
+  background: transparent; cursor: pointer; padding: 0; transition: background .3s, transform .3s;
+}
+.hero-dots button.active { background: #fff; transform: scale(1.25); }
+@media (prefers-reduced-motion: reduce) {
+  .hero-slide.active { animation: none; }
+  .hero-slide { transition: opacity .5s; }
 }
 .hero-content { position: relative; max-width: 780px; padding: 110px 22px; margin: 0 auto; text-align: center; }
 .hero h1 {
