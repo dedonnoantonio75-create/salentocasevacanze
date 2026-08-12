@@ -30,7 +30,11 @@ for p in kross:
         'source': 'kross',
     })
 
-WPA = {
+# Le 6 case storiche del vecchio sito sono state dismesse dal cliente (12/08/2026):
+# non vanno più incluse nel portale. Rimettere True solo se tornano in gestione.
+INCLUDE_WP_UNITS = False
+
+WPA = {} if not INCLUDE_WP_UNITS else {
     'appartamenti_bellavista-castro': dict(slug='bellavista-castro', name='Bellavista Castro', city='Castro Marina', guests=6, bedrooms=2, bathrooms=2),
     'appartamenti_casa-aragonese': dict(slug='casa-aragonese', name='Casa Aragonese', city='Otranto', guests=6, bedrooms=2, bathrooms=2),
     'appartamenti_casa-leuca-piccola': dict(slug='casa-leuca-piccola', name='Casa Leuca Piccola', city='Barbarano del Capo', guests=5, bedrooms=2, bathrooms=1),

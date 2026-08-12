@@ -333,7 +333,17 @@ def build_home(lang):
     usps = ''.join(
         f'<div class="usp reveal"><div class="icon">{icons[i]}</div><h3>{esc(t)}</h3><p>{esc(d)}</p></div>'
         for i, (t, d) in enumerate(h['usp']))
-    featured = [u for u in units if u['source'] == 'kross'][:6] + [u for u in units if u['source'] == 'wp'][:2]
+    # in evidenza: distribuisci tra le località (una unità per città, poi si ricomincia)
+    by_city = {}
+    for u in units:
+        by_city.setdefault(u['city'], []).append(u)
+    featured = []
+    giro = 0
+    while len(featured) < 8 and giro < 10:
+        for c in by_city:
+            if len(by_city[c]) > giro:
+                featured.append(by_city[c][giro])
+        giro += 1
     cards = ''.join(apt_card(u, lang, depth) for u in featured[:8])
     loc_cards = ''
     for slug, loc in LOCATIONS.items():

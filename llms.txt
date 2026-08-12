@@ -29,12 +29,6 @@ Gestito da Salento Case Vacanze srls, Via Nazario Sauro, 43 – 73040 Morciano d
 - [Appartamento Ionio Pescoluse](https://salentocasevacanze.com/appartamenti/residence-arancio-pescoluse/): Pescoluse, 4 ospiti, 1 camere. Prenotazione diretta: https://salentocasevacanze.kross.travel/residence-arancio-pescoluse
 - [Casa Mono Leuca](https://salentocasevacanze.com/appartamenti/casa-mono-leuca/): Santa Maria di Leuca, 2 ospiti, 1 camere. Prenotazione diretta: https://salentocasevacanze.kross.travel/casa-mono-leuca
 - [Appartamento Leuca](https://salentocasevacanze.com/appartamenti/appartamento-leuca/): Santa Maria di Leuca, 4 ospiti, 2 camere. Prenotazione diretta: https://salentocasevacanze.kross.travel/appartamento-leuca
-- [Bellavista Castro](https://salentocasevacanze.com/appartamenti/bellavista-castro/): Castro Marina, 6 ospiti, 2 camere. Prenotazione diretta: https://salentocasevacanze.kross.travel/it/appartamenti
-- [Casa Aragonese](https://salentocasevacanze.com/appartamenti/casa-aragonese/): Otranto, 6 ospiti, 2 camere. Prenotazione diretta: https://salentocasevacanze.kross.travel/it/appartamenti
-- [Casa Leuca Piccola](https://salentocasevacanze.com/appartamenti/casa-leuca-piccola/): Barbarano del Capo, 5 ospiti, 2 camere. Prenotazione diretta: https://salentocasevacanze.kross.travel/it/appartamenti
-- [Casa Orsa Mono](https://salentocasevacanze.com/appartamenti/casa-orsa-mono/): Gallipoli, 2 ospiti, 1 camere. Prenotazione diretta: https://salentocasevacanze.kross.travel/it/appartamenti
-- [Villa Orsa Azzurra](https://salentocasevacanze.com/appartamenti/villa-orsa-bilo-plus/): Gallipoli, 6 ospiti, 2 camere. Prenotazione diretta: https://salentocasevacanze.kross.travel/it/appartamenti
-- [Villa Orsa Superior](https://salentocasevacanze.com/appartamenti/villa-orsa-superior/): Gallipoli, 10 ospiti, 2 camere. Prenotazione diretta: https://salentocasevacanze.kross.travel/it/appartamenti
 
 ## Località
 - [Santa Maria di Leuca](https://salentocasevacanze.com/localita/leuca/): Cosa vedere a Leuca, la città dei due mari
