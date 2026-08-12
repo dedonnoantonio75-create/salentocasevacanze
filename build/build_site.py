@@ -8,6 +8,7 @@ sys.path.insert(0, str(Path(__file__).parent))
 from translations import (LANGS, LANG_NAMES, LANG_FLAGS, HTML_LANG, SLUGS, UI, HOME,
                           CITY_BLURBS, UNIT_SENTENCE, WP_DESC, LOCATIONS, ABOUT, TERMS,
                           UNIT_META, APTS_PAGE_META, LOCS_PAGE_META, CONTACTS_META)
+from privacy_i18n import BANNER, PRIVACY
 
 ROOT = Path(__file__).resolve().parent.parent
 SITE = 'https://salentocasevacanze.com'  # dominio di produzione
@@ -149,9 +150,7 @@ def head(lang, title, desc, canonical_path, pathmap, depth, og_img=None, extra_l
 <meta name="twitter:card" content="summary_large_image">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <link rel="icon" type="image/png" href="{r}{LOGO}">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{r}assets/fonts/fonts.css">
 <link rel="stylesheet" href="{r}assets/css/style.css">
 {extra_ld}
 </head>
@@ -219,6 +218,7 @@ def footer(lang, depth):
       <li><a href="{r}{lr}{s['locations']}/">{ui['nav_locs']}</a></li>
       <li><a href="{r}{lr}{s['about']}/">{ui['nav_about']}</a></li>
       <li><a href="{r}{lr}{s['terms']}/">{TERMS[lang]['title']}</a></li>
+      <li><a href="{r}{lr}{s['privacy']}/">{PRIVACY[lang]['title']}</a></li>
       <li><a href="https://salentocasevacanze.kross.travel/" target="_blank" rel="noopener">{ui['manage_booking']}</a></li>
     </ul>
   </div>
@@ -234,8 +234,13 @@ def footer(lang, depth):
 </div>
 <div class="footer-bottom"><div class="container">
   <span>© 2026 {ORG} — {ui['rights']}</span>
+  <a href="{r}{lr}{s['privacy']}/">{PRIVACY[lang]['title']}</a>
 </div></div>
 </footer>
+<div class="cookie-banner" id="cookieBanner" role="region" aria-label="Cookie">
+  <p>🍪 {BANNER[lang]['text']} <a href="{r}{lr}{s['privacy']}/">{BANNER[lang]['more']}</a></p>
+  <button class="btn btn-primary" id="cookieOk">{BANNER[lang]['ok']}</button>
+</div>
 <script src="{r}assets/js/main.js" defer></script>
 </body>
 </html>
@@ -692,6 +697,31 @@ def build_terms(lang):
     register(pathmap)
 
 
+# ============ PRIVACY & COOKIE ============
+def build_privacy(lang):
+    p = PRIVACY[lang]
+    ui = UI[lang]
+    lr = lang_root(lang)
+    s = SLUGS[lang]
+    depth = 1
+    r = rel(lang, depth)
+    pathmap = {l: loc_path(l, 'privacy') for l in LANGS}
+    items = ''.join(f'<div class="term-item reveal"><h3>{esc(h)}</h3><p>{esc(t)}</p></div>' for h, t in p['sections'])
+    out = head(lang, p['title'] + ' | Salento Case Vacanze', p['meta_desc'], pathmap[lang], pathmap, depth)
+    out += header_nav(lang, depth, None, pathmap)
+    out += f"""
+<div class="container">
+  <nav class="breadcrumbs"><a href="{r}{lr}">{ui['breadcrumb_home']}</a> › {esc(p['title'])}</nav>
+  <div class="page-title"><h1>{esc(p['title'])}</h1>
+  <p style="color:var(--ink-soft);margin-top:8px">{esc(p['updated'])}</p></div>
+  <section class="section" style="padding-top:30px"><div class="terms-list">{items}</div></section>
+</div>
+"""
+    out += footer(lang, depth)
+    write_page(f"{lr}{s['privacy']}/index.html", out)
+    register(pathmap)
+
+
 # ============ SITEMAP, ROBOTS, LLMS ============
 def build_seo_files():
     register({l: '' for l in LANGS})  # home
@@ -757,6 +787,7 @@ def main():
         build_about(lang)
         build_contacts(lang)
         build_terms(lang)
+        build_privacy(lang)
         for u in units:
             build_unit(u, lang)
             n += 1

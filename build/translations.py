@@ -8,11 +8,11 @@ HTML_LANG = {'it': 'it-IT', 'en': 'en-GB', 'fr': 'fr-FR', 'de': 'de-DE', 'es': '
 
 # slug delle sezioni per lingua
 SLUGS = {
-    'it': {'apartments': 'appartamenti', 'locations': 'localita', 'about': 'chi-siamo', 'contacts': 'contatti', 'terms': 'condizioni-generali'},
-    'en': {'apartments': 'apartments', 'locations': 'destinations', 'about': 'about-us', 'contacts': 'contacts', 'terms': 'terms-and-conditions'},
-    'fr': {'apartments': 'appartements', 'locations': 'destinations', 'about': 'qui-sommes-nous', 'contacts': 'contacts', 'terms': 'conditions-generales'},
-    'de': {'apartments': 'ferienwohnungen', 'locations': 'reiseziele', 'about': 'ueber-uns', 'contacts': 'kontakt', 'terms': 'agb'},
-    'es': {'apartments': 'apartamentos', 'locations': 'destinos', 'about': 'quienes-somos', 'contacts': 'contactos', 'terms': 'condiciones-generales'},
+    'it': {'apartments': 'appartamenti', 'locations': 'localita', 'about': 'chi-siamo', 'contacts': 'contatti', 'terms': 'condizioni-generali', 'privacy': 'privacy-e-cookie'},
+    'en': {'apartments': 'apartments', 'locations': 'destinations', 'about': 'about-us', 'contacts': 'contacts', 'terms': 'terms-and-conditions', 'privacy': 'privacy-and-cookies'},
+    'fr': {'apartments': 'appartements', 'locations': 'destinations', 'about': 'qui-sommes-nous', 'contacts': 'contacts', 'terms': 'conditions-generales', 'privacy': 'confidentialite-et-cookies'},
+    'de': {'apartments': 'ferienwohnungen', 'locations': 'reiseziele', 'about': 'ueber-uns', 'contacts': 'kontakt', 'terms': 'agb', 'privacy': 'datenschutz-und-cookies'},
+    'es': {'apartments': 'apartamentos', 'locations': 'destinos', 'about': 'quienes-somos', 'contacts': 'contactos', 'terms': 'condiciones-generales', 'privacy': 'privacidad-y-cookies'},
 }
 
 UI = {

@@ -85,6 +85,21 @@
     });
   }
 
+  // banner privacy/cookie (solo informativo: nessun cookie di profilazione)
+  var banner = document.getElementById('cookieBanner');
+  if (banner) {
+    var KEY = 'scv-privacy-notice';
+    var seen = null;
+    try { seen = localStorage.getItem(KEY); } catch (e) { /* storage bloccato */ }
+    if (!seen) {
+      setTimeout(function () { banner.classList.add('show'); }, 900);
+    }
+    document.getElementById('cookieOk').addEventListener('click', function () {
+      banner.classList.remove('show');
+      try { localStorage.setItem(KEY, String(Date.now())); } catch (e) { /* ignora */ }
+    });
+  }
+
   // mini-carosello sulle card (cambio foto al passaggio del mouse)
   document.querySelectorAll('.apt-media[data-imgs]').forEach(function (media) {
     var imgs = media.getAttribute('data-imgs').split('|');
