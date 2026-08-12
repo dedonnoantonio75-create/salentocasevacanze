@@ -233,7 +233,7 @@ def footer(lang, depth):
   </div>
 </div>
 <div class="footer-bottom"><div class="container">
-  <span>© 2026 {ORG} — {ui['rights']}</span>
+  <span>© 2026 {ORG} BY <a href="https://www.inginet.it" target="_blank" rel="noopener">INGINET</a> — {ui['rights']}</span>
   <a href="{r}{lr}{s['privacy']}/">{PRIVACY[lang]['title']}</a>
 </div></div>
 </footer>
