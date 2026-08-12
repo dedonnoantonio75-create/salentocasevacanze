@@ -14,7 +14,7 @@ ROOT = Path(__file__).resolve().parent.parent
 SITE = 'https://salentocasevacanze.com'  # dominio di produzione
 PHONE = '+39 339 809 8421'
 PHONE_RAW = '+393398098421'
-WA_RAW = '393203581118'
+WA_RAW = '393891948387'
 EMAIL = 'prenotazionisalentovacanze@gmail.com'
 FB = 'https://www.facebook.com/levanteturismosalento'
 KROSS_LIST = 'https://salentocasevacanze.kross.travel/it/appartamenti'
@@ -375,7 +375,7 @@ def build_home(lang):
   <div class="container">
     <div class="section-head reveal"><span class="eyebrow">{ui['nav_apts']}</span>
       <h2>{esc(h['apts_title'])}</h2><p>{esc(h['apts_sub'])}</p></div>
-    <div class="apt-grid">{cards}</div>
+    <div class="apt-grid apt-grid-8">{cards}</div>
     <p style="text-align:center;margin-top:44px"><a class="btn btn-primary" href="{r}{lr}{s['apartments']}/">{ui['view_all']} ({len(units)})</a></p>
   </div>
 </section>
@@ -672,7 +672,7 @@ def build_contacts(lang):
   <div class="page-title"><h1>{ui['nav_contacts']}</h1></div>
   <div class="contact-grid">
     <div class="contact-card reveal"><div class="icon">📞</div><h3>{ui['call_us']}</h3><a href="tel:{PHONE_RAW}">{PHONE}</a></div>
-    <div class="contact-card reveal"><div class="icon">💬</div><h3>WhatsApp</h3><a href="https://wa.me/{WA_RAW}" target="_blank" rel="noopener">+39 320 358 1118</a></div>
+    <div class="contact-card reveal"><div class="icon">💬</div><h3>WhatsApp</h3><a href="https://wa.me/{WA_RAW}" target="_blank" rel="noopener">+39 389 194 8387</a></div>
     <div class="contact-card reveal"><div class="icon">✉️</div><h3>{ui['write_us']}</h3><a href="mailto:{EMAIL}" style="word-break:break-all">{EMAIL}</a></div>
     <div class="contact-card reveal"><div class="icon">📍</div><h3>{ORG}</h3><p style="font-size:.92rem">{ADDRESS}<br>{ui['vat']} {VAT}</p></div>
   </div>
