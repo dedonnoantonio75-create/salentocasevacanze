@@ -30,14 +30,27 @@ units = json.load(open(ROOT / 'data' / 'units.json', encoding='utf-8'))
 
 # immagini di riferimento per località (dalle foto WP ottimizzate)
 LOC_IMAGES = {
-    'leuca': 'assets/img/opt/leuca.webp',
-    'torre-vado-e-pescoluse': 'assets/img/opt/pescoluse.webp',
-    'gallipoli': 'assets/img/opt/gallipoli.webp',
-    'otranto': 'assets/img/opt/otranto.webp',
-    'torre-dellorso': 'assets/img/opt/torredellorso.webp',
-    'castro': 'assets/img/opt/castro.webp',
+    'leuca': 'assets/img/opt/santa-maria-di-leuca-salento.webp',
+    'torre-vado-e-pescoluse': 'assets/img/opt/maldive-del-salento-pescoluse-spiaggia.webp',
+    'gallipoli': 'assets/img/opt/gallipoli-salento-spiagge.webp',
+    'otranto': 'assets/img/opt/otranto-borgo-mare-salento.webp',
+    'torre-dellorso': 'assets/img/opt/torre-dellorso-baia-salento.webp',
+    'castro': 'assets/img/opt/castro-marina-borgo-salento.webp',
 }
-HERO_IMG = 'assets/img/opt/hero-1.webp'
+HERO_IMG = 'assets/img/opt/tramonto-porto-santa-maria-di-leuca-salento.webp'
+HERO_SLIDES = [
+    'assets/img/opt/tramonto-porto-santa-maria-di-leuca-salento.webp',
+    'assets/img/opt/torre-sul-mare-tramonto-salento.webp',
+    'assets/img/opt/baia-mare-cristallino-salento.webp',
+]
+# descrizioni delle slide hero per screen reader e motori (aria-label)
+HERO_ALTS = {
+    'it': ['Tramonto sul porto di Santa Maria di Leuca, Salento', 'Torre costiera sul mare al tramonto nel Salento', 'Baia dal mare cristallino nel Salento'],
+    'en': ['Sunset over the harbour of Santa Maria di Leuca, Salento', 'Coastal tower in the sea at sunset in Salento', 'Bay with crystal-clear sea in Salento, Italy'],
+    'fr': ['Coucher de soleil sur le port de Santa Maria di Leuca, Salento', 'Tour côtière dans la mer au coucher du soleil, Salento', 'Baie à la mer cristalline dans le Salento'],
+    'de': ['Sonnenuntergang über dem Hafen von Santa Maria di Leuca, Salento', 'Küstenturm im Meer bei Sonnenuntergang im Salento', 'Bucht mit kristallklarem Meer im Salento'],
+    'es': ['Atardecer sobre el puerto de Santa Maria di Leuca, Salento', 'Torre costera en el mar al atardecer en el Salento', 'Bahía de mar cristalino en el Salento'],
+}
 LOGO = 'assets/img/opt/logo3-1.png'
 
 # mappa città -> slug località (per collegare unità e guide)
@@ -150,8 +163,10 @@ def head(lang, title, desc, canonical_path, pathmap, depth, og_img=None, extra_l
 <meta property="og:description" content="{esc(desc)}">
 <meta property="og:url" content="{page_url(lang, canonical_path)}">
 <meta property="og:image" content="{SITE}/{og_img}">
+<meta property="og:image:alt" content="{esc(title)}">
 <meta property="og:locale" content="{HTML_LANG[lang].replace('-', '_')}">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image:alt" content="{esc(title)}">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <link rel="icon" type="image/png" href="{r}{LOGO}">
 {f'<script>window.SCV_GA="{GA_ID}";</script>' if GA_ID else ''}
@@ -312,11 +327,11 @@ def write_page(path, content):
     p.write_text(content, encoding='utf-8')
 
 
-sitemap_entries = []  # (pathmap)
+sitemap_entries = []  # (pathmap, [url immagini assolute])
 
 
-def register(pathmap):
-    sitemap_entries.append(pathmap)
+def register(pathmap, images=None):
+    sitemap_entries.append((pathmap, images or []))
 
 
 # ============ HOME ============
@@ -360,9 +375,9 @@ def build_home(lang):
   <span class="fake-link">{ui['discover']} →</span></div></a>"""
     out += f"""
 <section class="hero hero-slideshow">
-  <div class="hero-slide active" style="background-image:url('{r}assets/img/opt/hero-1.webp')"></div>
-  <div class="hero-slide" style="background-image:url('{r}assets/img/opt/hero-2.webp')"></div>
-  <div class="hero-slide" style="background-image:url('{r}assets/img/opt/hero-3.webp')"></div>
+  <div class="hero-slide active" role="img" aria-label="{esc(HERO_ALTS[lang][0])}" style="background-image:url('{r}{HERO_SLIDES[0]}')"></div>
+  <div class="hero-slide" role="img" aria-label="{esc(HERO_ALTS[lang][1])}" style="background-image:url('{r}{HERO_SLIDES[1]}')"></div>
+  <div class="hero-slide" role="img" aria-label="{esc(HERO_ALTS[lang][2])}" style="background-image:url('{r}{HERO_SLIDES[2]}')"></div>
   <div class="hero-content">
     <h1>{esc(h['hero_title'])}</h1>
     <p>{esc(h['hero_sub'])}</p>
@@ -497,7 +512,7 @@ def build_unit(u, lang):
     ld = f"""<script type="application/ld+json">
 {{"@context":"https://schema.org","@type":"VacationRental","name":"{esc(u['name'])}",
 "url":"{page_url(lang, pathmap[lang])}",
-"image":[{','.join(f'"{SITE}/{i}"' for i in imgs[:5])}],
+"image":[{','.join(f'{{"@type":"ImageObject","url":"{SITE}/{i}","name":"{esc(img_alt(u, lang, n + 1))}"}}' for n, i in enumerate(imgs[:5]))}],
 "description":"{esc(desc_text[:300])}",
 "address":{{"@type":"PostalAddress","addressLocality":"{esc(city)}","addressRegion":"LE","addressCountry":"IT"}},
 "containsPlace":{{"@type":"Accommodation","occupancy":{{"@type":"QuantitativeValue","maxValue":{u.get('guests') or 2}}},"numberOfBedrooms":{u.get('bedrooms') or 1},"numberOfBathroomsTotal":{u.get('bathrooms') or 1}}},
@@ -548,7 +563,7 @@ def build_unit(u, lang):
 """
     out += footer(lang, depth)
     write_page(f"{lr}{s['apartments']}/{u['slug']}/index.html", out)
-    register(pathmap)
+    register(pathmap, [f'{SITE}/{i}' for i in imgs])
 
 
 # ============ LISTA LOCALITÀ ============
@@ -628,7 +643,7 @@ def build_location(slug, lang):
 """
     out += footer(lang, depth)
     write_page(f"{lr}{s['locations']}/{slug}/index.html", out)
-    register(pathmap)
+    register(pathmap, [f'{SITE}/{img}'])
 
 
 # ============ CHI SIAMO ============
@@ -748,11 +763,12 @@ def build_privacy(lang):
 
 # ============ SITEMAP, ROBOTS, LLMS ============
 def build_seo_files():
-    register({l: '' for l in LANGS})  # home
+    register({l: '' for l in LANGS}, [f'{SITE}/{i}' for i in HERO_SLIDES])  # home + foto slideshow
     lines = ['<?xml version="1.0" encoding="UTF-8"?>',
-             '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">']
+             '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">']
     seen = set()
-    for pm in sitemap_entries:
+    for pm, images in sitemap_entries:
+        imgs_xml = ''.join(f'<image:image><image:loc>{u}</image:loc></image:image>' for u in images[:10])
         for l in LANGS:
             url = page_url(l, pm[l])
             if url in seen:
@@ -760,7 +776,7 @@ def build_seo_files():
             seen.add(url)
             alts = ''.join(f'<xhtml:link rel="alternate" hreflang="{HTML_LANG[x]}" href="{page_url(x, pm[x])}"/>' for x in LANGS)
             alts += f'<xhtml:link rel="alternate" hreflang="x-default" href="{page_url("it", pm["it"])}"/>'
-            lines.append(f'<url><loc>{url}</loc>{alts}<changefreq>weekly</changefreq></url>')
+            lines.append(f'<url><loc>{url}</loc>{alts}{imgs_xml}<changefreq>weekly</changefreq></url>')
     lines.append('</urlset>')
     write_page('sitemap.xml', '\n'.join(lines))
 
