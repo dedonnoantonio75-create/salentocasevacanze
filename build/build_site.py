@@ -8,7 +8,7 @@ sys.path.insert(0, str(Path(__file__).parent))
 from translations import (LANGS, LANG_NAMES, LANG_FLAGS, HTML_LANG, SLUGS, UI, HOME,
                           CITY_BLURBS, UNIT_SENTENCE, WP_DESC, LOCATIONS, ABOUT, TERMS,
                           UNIT_META, APTS_PAGE_META, LOCS_PAGE_META, CONTACTS_META)
-from privacy_i18n import BANNER, PRIVACY
+from privacy_i18n import BANNER, PRIVACY, BANNER_GA, PRIVACY_COOKIE_GA, COOKIE_PREFS_LABEL
 
 ROOT = Path(__file__).resolve().parent.parent
 SITE = 'https://salentocasevacanze.com'  # dominio di produzione
@@ -21,6 +21,10 @@ KROSS_LIST = 'https://salentocasevacanze.kross.travel/it/appartamenti'
 ORG = 'Salento Case Vacanze srls'
 ADDRESS = 'Via Nazario Sauro, 43 – 73040 Morciano di Leuca (LE)'
 VAT = '05262750754'
+# ID misurazione Google Analytics 4 (es. 'G-AB12CD34EF'). Vuoto = GA disattivato,
+# banner solo informativo. Se valorizzato: banner di consenso Accetta/Rifiuta e
+# GA caricato SOLO dopo il consenso (vedi main.js).
+GA_ID = 'G-SQMRM03YG1'
 
 units = json.load(open(ROOT / 'data' / 'units.json', encoding='utf-8'))
 
@@ -150,6 +154,7 @@ def head(lang, title, desc, canonical_path, pathmap, depth, og_img=None, extra_l
 <meta name="twitter:card" content="summary_large_image">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <link rel="icon" type="image/png" href="{r}{LOGO}">
+{f'<script>window.SCV_GA="{GA_ID}";</script>' if GA_ID else ''}
 <link rel="stylesheet" href="{r}assets/fonts/fonts.css">
 <link rel="stylesheet" href="{r}assets/css/style.css">
 {extra_ld}
@@ -235,11 +240,12 @@ def footer(lang, depth):
 <div class="footer-bottom"><div class="container">
   <span>© 2026 {ORG} BY <a href="https://www.inginet.it" target="_blank" rel="noopener">INGINET</a> — {ui['rights']}</span>
   <a href="{r}{lr}{s['privacy']}/">{PRIVACY[lang]['title']}</a>
+  {f'<a href="#" id="cookiePrefs">{COOKIE_PREFS_LABEL[lang]}</a>' if GA_ID else ''}
 </div></div>
 </footer>
 <div class="cookie-banner" id="cookieBanner" role="region" aria-label="Cookie">
-  <p>🍪 {BANNER[lang]['text']} <a href="{r}{lr}{s['privacy']}/">{BANNER[lang]['more']}</a></p>
-  <button class="btn btn-primary" id="cookieOk">{BANNER[lang]['ok']}</button>
+  <p>🍪 {(BANNER_GA[lang]['text'] if GA_ID else BANNER[lang]['text'])} <a href="{r}{lr}{s['privacy']}/">{BANNER[lang]['more']}</a></p>
+  {f'<button class="btn btn-outline" id="cookieNo" style="border:1.5px solid var(--ink-soft);color:var(--ink-soft)">{BANNER_GA[lang]["reject"]}</button><button class="btn btn-primary" id="cookieOk">{BANNER_GA[lang]["accept"]}</button>' if GA_ID else f'<button class="btn btn-primary" id="cookieOk">{BANNER[lang]["ok"]}</button>'}
 </div>
 <script src="{r}assets/js/main.js" defer></script>
 </body>
@@ -720,7 +726,11 @@ def build_privacy(lang):
     depth = 1
     r = rel(lang, depth)
     pathmap = {l: loc_path(l, 'privacy') for l in LANGS}
-    items = ''.join(f'<div class="term-item reveal"><h3>{esc(h)}</h3><p>{esc(t)}</p></div>' for h, t in p['sections'])
+    sections = list(p['sections'])
+    if GA_ID:
+        # con GA attivo la sezione Cookie descrive il consenso e Google Analytics
+        sections = [(h, PRIVACY_COOKIE_GA[lang] if i == 3 else t) for i, (h, t) in enumerate(sections)]
+    items = ''.join(f'<div class="term-item reveal"><h3>{esc(h)}</h3><p>{esc(t)}</p></div>' for h, t in sections)
     out = head(lang, p['title'] + ' | Salento Case Vacanze', p['meta_desc'], pathmap[lang], pathmap, depth)
     out += header_nav(lang, depth, None, pathmap)
     out += f"""

@@ -112,18 +112,46 @@
     restart();
   }
 
-  // banner privacy/cookie (solo informativo: nessun cookie di profilazione)
+  // banner privacy/cookie
+  // - senza window.SCV_GA: solo informativo (nessun cookie di profilazione)
+  // - con window.SCV_GA: banner di consenso; Google Analytics parte SOLO dopo "Accetta"
   var banner = document.getElementById('cookieBanner');
+  function loadGA() {
+    if (!window.SCV_GA || window.__gaLoaded) return;
+    window.__gaLoaded = true;
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function () { dataLayer.push(arguments); };
+    gtag('js', new Date());
+    gtag('config', window.SCV_GA, { anonymize_ip: true });
+    var sc = document.createElement('script');
+    sc.async = true;
+    sc.src = 'https://www.googletagmanager.com/gtag/js?id=' + window.SCV_GA;
+    document.head.appendChild(sc);
+  }
   if (banner) {
-    var KEY = 'scv-privacy-notice';
-    var seen = null;
-    try { seen = localStorage.getItem(KEY); } catch (e) { /* storage bloccato */ }
-    if (!seen) {
+    var KEY = window.SCV_GA ? 'scv-consent' : 'scv-privacy-notice';
+    var stored = null;
+    try { stored = localStorage.getItem(KEY); } catch (e) { /* storage bloccato */ }
+    if (stored === 'granted') loadGA();
+    if (!stored) {
       setTimeout(function () { banner.classList.add('show'); }, 900);
     }
-    document.getElementById('cookieOk').addEventListener('click', function () {
+    function choose(value) {
       banner.classList.remove('show');
-      try { localStorage.setItem(KEY, String(Date.now())); } catch (e) { /* ignora */ }
+      try { localStorage.setItem(KEY, value); } catch (e) { /* ignora */ }
+      if (value === 'granted') loadGA();
+    }
+    document.getElementById('cookieOk').addEventListener('click', function () {
+      choose(window.SCV_GA ? 'granted' : String(Date.now()));
+    });
+    var no = document.getElementById('cookieNo');
+    if (no) no.addEventListener('click', function () { choose('denied'); });
+    var prefs = document.getElementById('cookiePrefs');
+    if (prefs) prefs.addEventListener('click', function (e) {
+      e.preventDefault();
+      try { localStorage.removeItem(KEY); } catch (e2) { /* ignora */ }
+      banner.classList.add('show');
+      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
     });
   }
 

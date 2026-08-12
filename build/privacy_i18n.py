@@ -101,3 +101,43 @@ PRIVACY = {
     ],
 },
 }
+
+
+# ---- Banner di consenso (attivo solo quando GA_ID e' impostato) ----
+BANNER_GA = {
+'it': {
+    'text': 'Questo sito usa Google Analytics, solo con il tuo consenso, per statistiche anonime di visita (IP anonimizzato). Nessun altro cookie di profilazione. Puoi cambiare idea in ogni momento dal link "Preferenze cookie" nel fondo pagina.',
+    'accept': 'Accetta', 'reject': 'Rifiuta',
+},
+'en': {
+    'text': 'This website uses Google Analytics, only with your consent, for anonymous visit statistics (anonymised IP). No other profiling cookies. You can change your choice at any time via the "Cookie preferences" link in the footer.',
+    'accept': 'Accept', 'reject': 'Reject',
+},
+'fr': {
+    'text': 'Ce site utilise Google Analytics, uniquement avec votre consentement, pour des statistiques de visite anonymes (IP anonymisée). Aucun autre cookie de profilage. Vous pouvez modifier votre choix à tout moment via le lien « Préférences cookies » en bas de page.',
+    'accept': 'Accepter', 'reject': 'Refuser',
+},
+'de': {
+    'text': 'Diese Website verwendet Google Analytics nur mit Ihrer Einwilligung fuer anonyme Besuchsstatistiken (anonymisierte IP). Keine weiteren Profiling-Cookies. Sie koennen Ihre Wahl jederzeit ueber den Link "Cookie-Einstellungen" in der Fusszeile aendern.',
+    'accept': 'Akzeptieren', 'reject': 'Ablehnen',
+},
+'es': {
+    'text': 'Este sitio usa Google Analytics, solo con tu consentimiento, para estadisticas anonimas de visita (IP anonimizada). Ningun otro cookie de perfilado. Puedes cambiar tu eleccion en cualquier momento desde el enlace "Preferencias de cookies" al pie de pagina.',
+    'accept': 'Aceptar', 'reject': 'Rechazar',
+},
+}
+
+# testo sezione Cookie della privacy quando GA e' attivo
+PRIVACY_COOKIE_GA = {
+'it': 'Questo sito utilizza Google Analytics 4 esclusivamente previo consenso espresso tramite il banner (i cookie analitici non vengono installati se rifiuti o non scegli). I dati sono raccolti in forma aggregata con IP anonimizzato da Google Ireland Ltd. Viene inoltre usata la memorizzazione tecnica del browser (localStorage) per ricordare la tua scelta. Puoi modificare la scelta in ogni momento tramite il link "Preferenze cookie" a fondo pagina. I caratteri tipografici sono ospitati localmente.',
+'en': 'This website uses Google Analytics 4 only with your prior consent given via the banner (analytics cookies are not set if you reject or make no choice). Data is collected in aggregate form with anonymised IP by Google Ireland Ltd. Technical browser storage (localStorage) is also used to remember your choice. You can change your choice at any time via the "Cookie preferences" link in the footer. Fonts are hosted locally.',
+'fr': 'Ce site utilise Google Analytics 4 uniquement apres votre consentement donne via le bandeau (les cookies analytiques ne sont pas installes si vous refusez ou ne choisissez pas). Les donnees sont collectees de facon agregee avec IP anonymisee par Google Ireland Ltd. Le stockage technique du navigateur (localStorage) est egalement utilise pour memoriser votre choix, modifiable a tout moment via le lien « Preferences cookies » en bas de page. Les polices sont hebergees localement.',
+'de': 'Diese Website verwendet Google Analytics 4 nur nach Ihrer ueber das Banner erteilten Einwilligung (ohne Zustimmung werden keine Analyse-Cookies gesetzt). Die Daten werden in aggregierter Form mit anonymisierter IP von Google Ireland Ltd. erhoben. Zudem wird technischer Browser-Speicher (localStorage) genutzt, um Ihre Wahl zu merken; Sie koennen sie jederzeit ueber den Link "Cookie-Einstellungen" in der Fusszeile aendern. Schriften werden lokal gehostet.',
+'es': 'Este sitio utiliza Google Analytics 4 solo con tu consentimiento previo otorgado mediante el banner (las cookies analiticas no se instalan si rechazas o no eliges). Los datos se recogen de forma agregada con IP anonimizada por Google Ireland Ltd. Tambien se usa el almacenamiento tecnico del navegador (localStorage) para recordar tu eleccion, modificable en cualquier momento desde el enlace "Preferencias de cookies" al pie de pagina. Las fuentes estan alojadas localmente.',
+}
+
+# etichetta link "preferenze cookie" nel footer
+COOKIE_PREFS_LABEL = {
+'it': 'Preferenze cookie', 'en': 'Cookie preferences', 'fr': 'Preferences cookies',
+'de': 'Cookie-Einstellungen', 'es': 'Preferencias de cookies',
+}
