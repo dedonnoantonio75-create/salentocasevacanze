@@ -73,8 +73,21 @@
   <div class="hero-content">
     <h1>Holiday homes in Salento, on the most beautiful sea in Puglia</h1>
     <p>Apartments and villas in Leuca, Pescoluse, Gallipoli, Otranto and Lecce. Book your stay directly, between the “Maldives of Salento” and some of Italy’s most beautiful villages.</p>
+    <form class="hero-search" id="heroSearch" autocomplete="off"
+          data-kross="https://salentocasevacanze.kross.travel/en/appartamenti"
+          data-apts="../en/apartments/"
+          aria-label="Search your holiday home">
+      <div class="hs-field"><label for="hsFrom">Check-in</label>
+        <input type="date" id="hsFrom" name="from"></div>
+      <div class="hs-field"><label for="hsTo">Check-out</label>
+        <input type="date" id="hsTo" name="to"></div>
+      <div class="hs-field"><label for="hsGuests">Guests</label>
+        <select id="hsGuests" name="guests"><option value="1">1</option><option value="2" selected>2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option></select></div>
+      <div class="hs-field"><label for="hsZone">Area</label>
+        <select id="hsZone" name="zone"><option value="">All areas</option><option value="Lido Marini">Lido Marini</option><option value="Lecce">Lecce</option><option value="Marina Di Leuca">Santa Maria di Leuca</option><option value="Castrignano Del Capo">Castrignano del Capo</option><option value="Marina Di Pescoluse">Pescoluse</option></select></div>
+      <button type="submit" class="btn btn-primary hs-btn">Search</button>
+    </form>
     <div class="hero-cta">
-      <a class="btn btn-primary" href="../en/apartments/">Find your holiday home</a>
       <a class="btn btn-ghost" href="../en/destinations/">Explore destinations</a>
     </div>
   </div>

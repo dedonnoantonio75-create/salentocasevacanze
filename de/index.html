@@ -73,8 +73,21 @@
   <div class="hero-content">
     <h1>Ferienwohnungen im Salento, am schönsten Meer Apuliens</h1>
     <p>Ferienwohnungen und Villen in Leuca, Pescoluse, Gallipoli, Otranto und Lecce. Buchen Sie Ihren Urlaub direkt – zwischen den „Malediven des Salento“ und den schönsten Dörfern Italiens.</p>
+    <form class="hero-search" id="heroSearch" autocomplete="off"
+          data-kross="https://salentocasevacanze.kross.travel/en/appartamenti"
+          data-apts="../de/ferienwohnungen/"
+          aria-label="Ferienhaus suchen">
+      <div class="hs-field"><label for="hsFrom">Anreise</label>
+        <input type="date" id="hsFrom" name="from"></div>
+      <div class="hs-field"><label for="hsTo">Abreise</label>
+        <input type="date" id="hsTo" name="to"></div>
+      <div class="hs-field"><label for="hsGuests">Gäste</label>
+        <select id="hsGuests" name="guests"><option value="1">1</option><option value="2" selected>2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option></select></div>
+      <div class="hs-field"><label for="hsZone">Gebiet</label>
+        <select id="hsZone" name="zone"><option value="">Alle Gebiete</option><option value="Lido Marini">Lido Marini</option><option value="Lecce">Lecce</option><option value="Marina Di Leuca">Santa Maria di Leuca</option><option value="Castrignano Del Capo">Castrignano del Capo</option><option value="Marina Di Pescoluse">Pescoluse</option></select></div>
+      <button type="submit" class="btn btn-primary hs-btn">Suchen</button>
+    </form>
     <div class="hero-cta">
-      <a class="btn btn-primary" href="../de/ferienwohnungen/">Finden Sie Ihr Ferienhaus</a>
       <a class="btn btn-ghost" href="../de/reiseziele/">Reiseziele entdecken</a>
     </div>
   </div>

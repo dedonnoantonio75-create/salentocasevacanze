@@ -73,8 +73,21 @@
   <div class="hero-content">
     <h1>Case vacanze nel Salento, sul mare più bello della Puglia</h1>
     <p>Appartamenti e ville a Leuca, Pescoluse, Gallipoli, Otranto e Lecce. Prenota direttamente la tua vacanza tra le Maldive del Salento e i borghi più belli d’Italia.</p>
+    <form class="hero-search" id="heroSearch" autocomplete="off"
+          data-kross="https://salentocasevacanze.kross.travel/it/appartamenti"
+          data-apts="appartamenti/"
+          aria-label="Cerca la tua casa vacanza">
+      <div class="hs-field"><label for="hsFrom">Arrivo</label>
+        <input type="date" id="hsFrom" name="from"></div>
+      <div class="hs-field"><label for="hsTo">Partenza</label>
+        <input type="date" id="hsTo" name="to"></div>
+      <div class="hs-field"><label for="hsGuests">Ospiti</label>
+        <select id="hsGuests" name="guests"><option value="1">1</option><option value="2" selected>2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option></select></div>
+      <div class="hs-field"><label for="hsZone">Zona</label>
+        <select id="hsZone" name="zone"><option value="">Tutte le zone</option><option value="Lido Marini">Lido Marini</option><option value="Lecce">Lecce</option><option value="Marina Di Leuca">Santa Maria di Leuca</option><option value="Castrignano Del Capo">Castrignano del Capo</option><option value="Marina Di Pescoluse">Pescoluse</option></select></div>
+      <button type="submit" class="btn btn-primary hs-btn">Cerca</button>
+    </form>
     <div class="hero-cta">
-      <a class="btn btn-primary" href="appartamenti/">Trova la tua casa vacanza</a>
       <a class="btn btn-ghost" href="localita/">Scopri le località</a>
     </div>
   </div>

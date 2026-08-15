@@ -43,6 +43,17 @@ HERO_SLIDES = [
     'assets/img/opt/torre-sul-mare-tramonto-salento.webp',
     'assets/img/opt/baia-mare-cristallino-salento.webp',
 ]
+# etichette del box di ricerca nella hero
+SEARCH_I18N = {
+    'it': {'arrive': 'Arrivo', 'depart': 'Partenza', 'guests': 'Ospiti', 'zone': 'Zona', 'btn': 'Cerca', 'all_zones': 'Tutte le zone', 'title': 'Cerca la tua casa vacanza'},
+    'en': {'arrive': 'Check-in', 'depart': 'Check-out', 'guests': 'Guests', 'zone': 'Area', 'btn': 'Search', 'all_zones': 'All areas', 'title': 'Search your holiday home'},
+    'fr': {'arrive': 'Arrivée', 'depart': 'Départ', 'guests': 'Personnes', 'zone': 'Zone', 'btn': 'Rechercher', 'all_zones': 'Toutes les zones', 'title': 'Cherchez votre location'},
+    'de': {'arrive': 'Anreise', 'depart': 'Abreise', 'guests': 'Gäste', 'zone': 'Gebiet', 'btn': 'Suchen', 'all_zones': 'Alle Gebiete', 'title': 'Ferienhaus suchen'},
+    'es': {'arrive': 'Llegada', 'depart': 'Salida', 'guests': 'Huéspedes', 'zone': 'Zona', 'btn': 'Buscar', 'all_zones': 'Todas las zonas', 'title': 'Busca tu casa de vacaciones'},
+}
+# lingua del motore Kross per ciascuna lingua del sito (Kross ha solo it/en)
+KROSS_LANG = {'it': 'it', 'en': 'en', 'fr': 'en', 'de': 'en', 'es': 'en'}
+
 # descrizioni delle slide hero per screen reader e motori (aria-label)
 HERO_ALTS = {
     'it': ['Tramonto sul porto di Santa Maria di Leuca, Salento', 'Torre costiera sul mare al tramonto nel Salento', 'Baia dal mare cristallino nel Salento'],
@@ -381,8 +392,21 @@ def build_home(lang):
   <div class="hero-content">
     <h1>{esc(h['hero_title'])}</h1>
     <p>{esc(h['hero_sub'])}</p>
+    <form class="hero-search" id="heroSearch" autocomplete="off"
+          data-kross="https://salentocasevacanze.kross.travel/{KROSS_LANG[lang]}/appartamenti"
+          data-apts="{r}{lr}{s['apartments']}/"
+          aria-label="{esc(SEARCH_I18N[lang]['title'])}">
+      <div class="hs-field"><label for="hsFrom">{SEARCH_I18N[lang]['arrive']}</label>
+        <input type="date" id="hsFrom" name="from"></div>
+      <div class="hs-field"><label for="hsTo">{SEARCH_I18N[lang]['depart']}</label>
+        <input type="date" id="hsTo" name="to"></div>
+      <div class="hs-field"><label for="hsGuests">{SEARCH_I18N[lang]['guests']}</label>
+        <select id="hsGuests" name="guests">{''.join(f'<option value="{n}"{" selected" if n == 2 else ""}>{n}</option>' for n in range(1, 11))}</select></div>
+      <div class="hs-field"><label for="hsZone">{SEARCH_I18N[lang]['zone']}</label>
+        <select id="hsZone" name="zone"><option value="">{SEARCH_I18N[lang]['all_zones']}</option>{''.join(f'<option value="{esc(c)}">{esc(CITY_DISPLAY.get(c, c))}</option>' for c in dict.fromkeys(u['city'] for u in units))}</select></div>
+      <button type="submit" class="btn btn-primary hs-btn">{SEARCH_I18N[lang]['btn']}</button>
+    </form>
     <div class="hero-cta">
-      <a class="btn btn-primary" href="{r}{lr}{s['apartments']}/">{ui['hero_cta_primary']}</a>
       <a class="btn btn-ghost" href="{r}{lr}{s['locations']}/">{ui['hero_cta_secondary']}</a>
     </div>
   </div>

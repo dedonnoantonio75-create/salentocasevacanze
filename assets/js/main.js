@@ -50,6 +50,40 @@
       });
     });
   });
+  // preseleziona il filtro zona se arrivo dal box di ricerca (?zona=...)
+  if (chips.length) {
+    var zonaParam = new URLSearchParams(location.search).get('zona');
+    if (zonaParam) {
+      chips.forEach(function (c) {
+        if (c.getAttribute('data-city') === zonaParam) c.click();
+      });
+    }
+  }
+
+  // box di ricerca nella hero: date+ospiti -> motore Kross; solo zona -> griglia filtrata
+  var hs = document.getElementById('heroSearch');
+  if (hs) {
+    var hsFrom = document.getElementById('hsFrom');
+    var hsTo = document.getElementById('hsTo');
+    var oggi = new Date().toISOString().slice(0, 10);
+    hsFrom.min = oggi;
+    hsTo.min = oggi;
+    hsFrom.addEventListener('change', function () { if (hsFrom.value) hsTo.min = hsFrom.value; });
+    hs.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var from = hsFrom.value, to = hsTo.value;
+      var guests = document.getElementById('hsGuests').value;
+      var zone = document.getElementById('hsZone').value;
+      if (from && to) {
+        var url = hs.getAttribute('data-kross') + '?from=' + from + '&to=' + to + '&guests=' + guests;
+        window.open(url, '_blank', 'noopener');
+      } else {
+        var dest = hs.getAttribute('data-apts');
+        if (zone) dest += '?zona=' + encodeURIComponent(zone);
+        window.location.href = dest;
+      }
+    });
+  }
 
   // lightbox galleria
   var lb = document.querySelector('.lightbox');

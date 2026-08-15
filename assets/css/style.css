@@ -132,6 +132,27 @@ a:hover { color: var(--terra-dark); }
 .btn-sea { background: var(--sea); color: #fff !important; box-shadow: 0 8px 24px rgba(31,111,139,.35); }
 .btn-sea:hover { background: var(--sea-dark); transform: translateY(-2px); }
 .hero-scroll { position: absolute; bottom: 26px; left: 50%; transform: translateX(-50%); color: #fff; opacity: .85; animation: bounce 2.2s infinite; font-size: 26px; }
+
+/* box di ricerca nella hero */
+.hero-search {
+  display: grid; grid-template-columns: repeat(4, 1fr) auto; gap: 10px; align-items: end;
+  background: rgba(250, 246, 241, .95); backdrop-filter: blur(8px);
+  border-radius: var(--radius); padding: 18px; margin: 6px auto 26px; max-width: 860px;
+  box-shadow: var(--shadow-lg); text-align: left;
+}
+.hs-field { display: flex; flex-direction: column; gap: 5px; }
+.hs-field label { font-size: .78rem; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: var(--terra-dark); }
+.hs-field input, .hs-field select {
+  font-family: inherit; font-size: .95rem; color: var(--ink);
+  border: 1.5px solid rgba(185, 106, 54, .25); border-radius: 10px;
+  padding: 10px 10px; background: #fff; min-width: 0;
+}
+.hs-field input:focus, .hs-field select:focus { outline: 2px solid var(--peach); border-color: var(--terra); }
+.hs-btn { padding: 12px 26px; white-space: nowrap; }
+@media (max-width: 860px) {
+  .hero-search { grid-template-columns: 1fr 1fr; max-width: 480px; }
+  .hs-btn { grid-column: 1 / -1; justify-content: center; }
+}
 @keyframes bounce { 0%,100% { transform: translate(-50%,0) } 50% { transform: translate(-50%,9px) } }
 
 /* ---------- Sezioni ---------- */
