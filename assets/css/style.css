@@ -24,6 +24,7 @@
 }
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
+html, body { overflow-x: clip; }
 body {
   font-family: var(--font-body);
   color: var(--ink);
@@ -368,6 +369,10 @@ a:hover { color: var(--terra-dark); }
   .gallery { grid-template-columns: 1fr 1fr; grid-auto-rows: 180px; }
 }
 @media (max-width: 780px) {
+  /* su schermi piccoli (e con lo zoom pagina di Samsung Internet) le griglie non hanno
+     larghezza minima: una colonna che si adatta sempre, mai sbordamenti a destra */
+  .apt-grid, .loc-grid, .usp-grid, .contact-grid { grid-template-columns: minmax(0, 1fr); }
+
   /* hero compatta: titolo in alto e motore di ricerca visibile nella prima schermata */
   .hero { min-height: 100svh; align-items: flex-start; }
   .hero-content { padding: 64px 14px 24px; }
