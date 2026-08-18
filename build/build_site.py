@@ -1,7 +1,11 @@
 # -*- coding: utf-8 -*-
 # Generatore statico del portale Salento Case Vacanze — 5 lingue
 import json, re, shutil, sys
+from datetime import datetime
 from pathlib import Path
+
+# versione di build: cambia a ogni rigenerazione e forza i browser a riscaricare CSS/JS
+BUILD_V = datetime.now().strftime('%Y%m%d%H%M')
 
 sys.stdout.reconfigure(encoding='utf-8')
 sys.path.insert(0, str(Path(__file__).parent))
@@ -181,8 +185,8 @@ def head(lang, title, desc, canonical_path, pathmap, depth, og_img=None, extra_l
 <meta name="robots" content="index, follow, max-image-preview:large">
 <link rel="icon" type="image/png" href="{r}{LOGO}">
 {f'<script>window.SCV_GA="{GA_ID}";</script>' if GA_ID else ''}
-<link rel="stylesheet" href="{r}assets/fonts/fonts.css">
-<link rel="stylesheet" href="{r}assets/css/style.css">
+<link rel="stylesheet" href="{r}assets/fonts/fonts.css?v={BUILD_V}">
+<link rel="stylesheet" href="{r}assets/css/style.css?v={BUILD_V}">
 {extra_ld}
 </head>
 <body>
@@ -273,7 +277,7 @@ def footer(lang, depth):
   <p>🍪 {(BANNER_GA[lang]['text'] if GA_ID else BANNER[lang]['text'])} <a href="{r}{lr}{s['privacy']}/">{BANNER[lang]['more']}</a></p>
   {f'<button class="btn btn-outline" id="cookieNo" style="border:1.5px solid var(--ink-soft);color:var(--ink-soft)">{BANNER_GA[lang]["reject"]}</button><button class="btn btn-primary" id="cookieOk">{BANNER_GA[lang]["accept"]}</button>' if GA_ID else f'<button class="btn btn-primary" id="cookieOk">{BANNER[lang]["ok"]}</button>'}
 </div>
-<script src="{r}assets/js/main.js" defer></script>
+<script src="{r}assets/js/main.js?v={BUILD_V}" defer></script>
 </body>
 </html>
 """

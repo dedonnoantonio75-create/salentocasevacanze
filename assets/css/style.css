@@ -379,6 +379,9 @@ a:hover { color: var(--terra-dark); }
   .hs-btn { padding: 11px 20px; }
   .hero .hero-cta { display: none; }
   .hero-scroll { display: none; }
+  /* pallini slideshow: nel flusso sotto il box di ricerca, mai sovrapposti */
+  .hero { flex-direction: column; align-items: center; }
+  .hero-dots { position: static; transform: none; margin: 2px auto 20px; }
   /* WhatsApp più piccolo e rasente l'angolo: non copre il pulsante Cerca */
   .wa-float { width: 46px; height: 46px; bottom: 10px; right: 8px; box-shadow: 0 6px 16px rgba(37,211,102,.4); }
   .wa-float svg { width: 24px; height: 24px; }
