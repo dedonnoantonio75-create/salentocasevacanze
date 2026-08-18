@@ -11,7 +11,9 @@ ext_links = set()
 for page in pages:
     html = page.read_text(encoding='utf-8')
     for m in re.finditer(r'(?:href|src)="([^"#]+)"', html):
-        url = m.group(1)
+        url = m.group(1).split('?')[0]
+        if not url:
+            continue
         if url.startswith(('http', 'mailto:', 'tel:', 'data:')):
             if url.startswith('http'):
                 ext_links.add(url)
