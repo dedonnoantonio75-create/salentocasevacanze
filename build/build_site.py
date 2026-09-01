@@ -35,7 +35,7 @@ units = json.load(open(ROOT / 'data' / 'units.json', encoding='utf-8'))
 # immagini di riferimento per località (dalle foto WP ottimizzate)
 LOC_IMAGES = {
     'leuca': 'assets/img/opt/santa-maria-di-leuca-salento.webp',
-    'torre-vado-e-pescoluse': 'assets/img/opt/maldive-del-salento-pescoluse-spiaggia.webp',
+    'torre-vado-e-pescoluse': 'assets/img/opt/pescoluse-spiaggia-sabbia-costa-ionica.webp',
     'gallipoli': 'assets/img/opt/gallipoli-salento-spiagge.webp',
     'otranto': 'assets/img/opt/otranto-borgo-mare-salento.webp',
     'torre-dellorso': 'assets/img/opt/torre-dellorso-baia-salento.webp',
@@ -821,7 +821,7 @@ Sitemap: {SITE}/sitemap.xml
         f"Prenotazione diretta: {u['booking']}" for u in units)
     write_page('llms.txt', f"""# Salento Case Vacanze
 
-> Case vacanza e appartamenti nel Salento (Puglia, Italia): Santa Maria di Leuca, Pescoluse ("Maldive del Salento"), Lido Marini, Lecce, Castrignano del Capo, Gallipoli, Otranto e Castro. Prenotazione diretta online tramite Kross Booking, senza commissioni di intermediari. Sito in italiano, inglese, francese, tedesco e spagnolo.
+> Case vacanza e appartamenti nel Salento (Puglia, Italia): Santa Maria di Leuca, Pescoluse, Lido Marini, Lecce, Castrignano del Capo, Gallipoli, Otranto e Castro. Prenotazione diretta online tramite Kross Booking, senza commissioni di intermediari. Sito in italiano, inglese, francese, tedesco e spagnolo.
 
 Gestito da {ORG}, {ADDRESS}, P.IVA {VAT}. Telefono/WhatsApp: {PHONE} / +39 320 358 1118. Email: {EMAIL}.
 
