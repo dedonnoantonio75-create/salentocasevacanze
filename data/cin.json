@@ -1,6 +1,6 @@
 {
  "_nota": "CIN (Codice Identificativo Nazionale) per struttura, comunicati dal cliente il 09/09/2026. Piu' unita' della stessa struttura condividono lo stesso CIN. Obbligatorio negli annunci: va sempre mostrato nella scheda.",
- "_mancanti": ["casa-mono-leuca"],
+ "_mancanti": [],
 
  "lido-marini-rooms-matrimoniale-deluxe": "IT075066A100114987",
  "lido-marini-rooms-superior-matrimoniale": "IT075066A100114987",
@@ -32,5 +32,6 @@
  "casa-blu-pescoluse": "IT075066B400071731",
  "residence-arancio-pescoluse": "IT075066B400071731",
 
- "appartamento-leuca": "IT075019B400071728"
+ "appartamento-leuca": "IT075019B400071728",
+ "casa-mono-leuca": "IT075019B400071728"
 }
