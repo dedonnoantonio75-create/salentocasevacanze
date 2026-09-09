@@ -1,0 +1,36 @@
+{
+ "_nota": "CIN (Codice Identificativo Nazionale) per struttura, comunicati dal cliente il 09/09/2026. Piu' unita' della stessa struttura condividono lo stesso CIN. Obbligatorio negli annunci: va sempre mostrato nella scheda.",
+ "_mancanti": ["casa-mono-leuca"],
+
+ "lido-marini-rooms-matrimoniale-deluxe": "IT075066A100114987",
+ "lido-marini-rooms-superior-matrimoniale": "IT075066A100114987",
+ "lido-marini-rooms-tripla-deluxe": "IT075066A100114987",
+ "lido-marini-rooms-superior-tripla": "IT075066A100114987",
+
+ "dimora-del-centro": "IT075035B400086275",
+ "2-dimore-centro-lecce": "IT075035B400086275",
+ "3-dimore-centro-lecce": "IT075035B400086275",
+ "4-dimore-centro-lecce": "IT075035B400086275",
+ "5-dimore-centro-lecce": "IT075035B400086275",
+
+ "residenza-occidente-villa-felicita": "IT075019B400121989",
+ "residenza-meridiana-villa-felicita": "IT075019B400121989",
+ "residenza-oriente-villa-felicita": "IT075019B400121989",
+
+ "villa-la-sciroccata": "IT075019C200057985",
+
+ "casa-centro-castrignano-1": "IT075019B400103650",
+ "casa-centro-castrignano-2": "IT075019B400103650",
+ "casa-centro-castrignano-3": "IT075019B400103650",
+
+ "appartamento-mare-pescoluse": "IT075066B400071725",
+
+ "messapia-leuca-vista-mare-e-piscina": "IT075019B400125590",
+
+ "residence-verde-pescoluse": "IT075066B400071731",
+ "piano-alto-mare": "IT075066B400071731",
+ "casa-blu-pescoluse": "IT075066B400071731",
+ "residence-arancio-pescoluse": "IT075066B400071731",
+
+ "appartamento-leuca": "IT075019B400071728"
+}

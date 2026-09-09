@@ -32,6 +32,15 @@ GA_ID = 'G-SQMRM03YG1'
 
 units = json.load(open(ROOT / 'data' / 'units.json', encoding='utf-8'))
 
+# CIN (Codice Identificativo Nazionale) per struttura: obbligatorio negli annunci.
+# Mappa slug -> codice in data/cin.json (le chiavi che iniziano con "_" sono note interne).
+CIN = {k: v for k, v in json.load(open(ROOT / 'data' / 'cin.json', encoding='utf-8')).items()
+       if not k.startswith('_')}
+for _u in units:
+    if CIN.get(_u['slug']):
+        _u['cin'] = CIN[_u['slug']]
+_senza_cin = [u['slug'] for u in units if not u.get('cin')]
+
 # immagini di riferimento per località (dalle foto WP ottimizzate)
 LOC_IMAGES = {
     'leuca': 'assets/img/opt/santa-maria-di-leuca-salento.webp',
@@ -536,7 +545,7 @@ def build_unit(u, lang):
         others += [x for x in units if x['slug'] != u['slug'] and x not in others][:3 - len(others)]
     other_cards = ''.join(apt_card(x, lang, depth) for x in others)
 
-    cis = f'<p class="cis-note">{ui["cis_label"]}: {u["cis"]}</p>' if u.get('cis') else ''
+    cis = f'<p class="cis-note">{ui["cin_label"]}: <strong>{esc(u["cin"])}</strong></p>' if u.get('cin') else ''
     ld = f"""<script type="application/ld+json">
 {{"@context":"https://schema.org","@type":"VacationRental","name":"{esc(u['name'])}",
 "url":"{page_url(lang, pathmap[lang])}",
@@ -544,7 +553,8 @@ def build_unit(u, lang):
 "description":"{esc(desc_text[:300])}",
 "address":{{"@type":"PostalAddress","addressLocality":"{esc(city)}","addressRegion":"LE","addressCountry":"IT"}},
 "containsPlace":{{"@type":"Accommodation","occupancy":{{"@type":"QuantitativeValue","maxValue":{u.get('guests') or 2}}},"numberOfBedrooms":{u.get('bedrooms') or 1},"numberOfBathroomsTotal":{u.get('bathrooms') or 1}}},
-"brand":{{"@type":"Brand","name":"Salento Case Vacanze"}},
+"brand":{{"@type":"Brand","name":"Salento Case Vacanze"}},{f'''
+"identifier":{{"@type":"PropertyValue","name":"CIN","value":"{u['cin']}"}},''' if u.get('cin') else ''}
 "potentialAction":{{"@type":"ReserveAction","target":"{u['booking']}"}}}}
 </script>""" + breadcrumb_ld(lang, [
         (ui['breadcrumb_home'], page_url(lang)),

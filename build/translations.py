@@ -29,7 +29,7 @@ UI = {
     'footer_links': 'Link utili', 'footer_contacts': 'Contatti', 'footer_follow': 'Seguici',
     'rights': 'Tutti i diritti riservati.', 'vat': 'P.IVA', 'manage_booking': 'Gestisci prenotazione',
     'featured': 'In evidenza', 'per_night_from': 'Verifica prezzi e date', 'units_count': 'soluzioni',
-    'whatsapp_msg': 'Scrivici su WhatsApp', 'cis_label': 'Codice Identificativo Struttura',
+    'whatsapp_msg': 'Scrivici su WhatsApp', 'cin_label': 'CIN – Codice Identificativo Nazionale',
     'skip_content': 'Vai al contenuto',
 },
 'en': {
@@ -45,7 +45,7 @@ UI = {
     'footer_links': 'Useful links', 'footer_contacts': 'Contacts', 'footer_follow': 'Follow us',
     'rights': 'All rights reserved.', 'vat': 'VAT no.', 'manage_booking': 'Manage booking',
     'featured': 'Featured', 'per_night_from': 'Check rates and dates', 'units_count': 'homes',
-    'whatsapp_msg': 'Message us on WhatsApp', 'cis_label': 'Property ID Code',
+    'whatsapp_msg': 'Message us on WhatsApp', 'cin_label': 'CIN – Italian National Identification Code',
     'skip_content': 'Skip to content',
 },
 'fr': {
@@ -61,7 +61,7 @@ UI = {
     'footer_links': 'Liens utiles', 'footer_contacts': 'Contacts', 'footer_follow': 'Suivez-nous',
     'rights': 'Tous droits réservés.', 'vat': 'N° TVA', 'manage_booking': 'Gérer la réservation',
     'featured': 'À la une', 'per_night_from': 'Voir tarifs et dates', 'units_count': 'logements',
-    'whatsapp_msg': 'Écrivez-nous sur WhatsApp', 'cis_label': 'Code d’identification',
+    'whatsapp_msg': 'Écrivez-nous sur WhatsApp', 'cin_label': 'CIN – code d’identification national italien',
     'skip_content': 'Aller au contenu',
 },
 'de': {
@@ -77,7 +77,7 @@ UI = {
     'footer_links': 'Nützliche Links', 'footer_contacts': 'Kontakt', 'footer_follow': 'Folgen Sie uns',
     'rights': 'Alle Rechte vorbehalten.', 'vat': 'USt-IdNr.', 'manage_booking': 'Buchung verwalten',
     'featured': 'Empfohlen', 'per_night_from': 'Preise und Termine prüfen', 'units_count': 'Unterkünfte',
-    'whatsapp_msg': 'Schreiben Sie uns auf WhatsApp', 'cis_label': 'Objekt-Kennung',
+    'whatsapp_msg': 'Schreiben Sie uns auf WhatsApp', 'cin_label': 'CIN – italienischer nationaler Identifikationscode',
     'skip_content': 'Zum Inhalt springen',
 },
 'es': {
@@ -93,7 +93,7 @@ UI = {
     'footer_links': 'Enlaces útiles', 'footer_contacts': 'Contactos', 'footer_follow': 'Síguenos',
     'rights': 'Todos los derechos reservados.', 'vat': 'NIF', 'manage_booking': 'Gestionar reserva',
     'featured': 'Destacados', 'per_night_from': 'Consultar precios y fechas', 'units_count': 'alojamientos',
-    'whatsapp_msg': 'Escríbenos por WhatsApp', 'cis_label': 'Código de identificación',
+    'whatsapp_msg': 'Escríbenos por WhatsApp', 'cin_label': 'CIN – código de identificación nacional italiano',
     'skip_content': 'Ir al contenido',
 },
 }
