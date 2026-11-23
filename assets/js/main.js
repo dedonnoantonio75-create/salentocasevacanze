@@ -68,7 +68,21 @@
     var oggi = new Date().toISOString().slice(0, 10);
     hsFrom.min = oggi;
     hsTo.min = oggi;
-    hsFrom.addEventListener('change', function () { if (hsFrom.value) hsTo.min = hsFrom.value; });
+    // scelto l'arrivo: la partenza parte dal giorno dopo e si propone a +7 notti,
+    // cosi' il calendario della partenza si apre gia' sul mese giusto (niente scroll dei mesi)
+    function piuGiorni(iso, n) {
+      var p = iso.split('-');
+      var d = new Date(Date.UTC(+p[0], +p[1] - 1, +p[2] + n));
+      return d.toISOString().slice(0, 10);
+    }
+    hsFrom.addEventListener('change', function () {
+      if (!hsFrom.value) return;
+      hsTo.min = piuGiorni(hsFrom.value, 1);
+      if (!hsTo.value || hsTo.value <= hsFrom.value) hsTo.value = piuGiorni(hsFrom.value, 7);
+      if (typeof hsTo.showPicker === 'function') {
+        setTimeout(function () { try { hsTo.focus(); hsTo.showPicker(); } catch (err) {} }, 150);
+      }
+    });
     hs.addEventListener('submit', function (e) {
       e.preventDefault();
       var from = hsFrom.value, to = hsTo.value;

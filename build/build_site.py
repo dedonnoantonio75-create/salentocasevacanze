@@ -18,7 +18,7 @@ ROOT = Path(__file__).resolve().parent.parent
 SITE = 'https://salentocasevacanze.com'  # dominio di produzione
 PHONE = '+39 339 809 8421'
 PHONE_RAW = '+393398098421'
-WA_RAW = '393891948387'
+WA_RAW = '393398098421'
 EMAIL = 'prenotazionisalentovacanze@gmail.com'
 FB = 'https://www.facebook.com/salentoCV'
 KROSS_LIST = 'https://salentocasevacanze.kross.travel/it/appartamenti'
@@ -731,7 +731,7 @@ def build_contacts(lang):
   <div class="page-title"><h1>{ui['nav_contacts']}</h1></div>
   <div class="contact-grid">
     <div class="contact-card reveal"><div class="icon">📞</div><h3>{ui['call_us']}</h3><a href="tel:{PHONE_RAW}">{PHONE}</a></div>
-    <div class="contact-card reveal"><div class="icon">💬</div><h3>WhatsApp</h3><a href="https://wa.me/{WA_RAW}" target="_blank" rel="noopener">+39 389 194 8387</a></div>
+    <div class="contact-card reveal"><div class="icon">💬</div><h3>WhatsApp</h3><a href="https://wa.me/{WA_RAW}" target="_blank" rel="noopener">{PHONE}</a></div>
     <div class="contact-card reveal"><div class="icon">✉️</div><h3>{ui['write_us']}</h3><a href="mailto:{EMAIL}" style="word-break:break-all">{EMAIL}</a></div>
     <div class="contact-card reveal"><div class="icon">📍</div><h3>{ORG}</h3><p style="font-size:.92rem">{ADDRESS}<br>{ui['vat']} {VAT}</p></div>
   </div>
@@ -833,7 +833,7 @@ Sitemap: {SITE}/sitemap.xml
 
 > Case vacanza e appartamenti nel Salento (Puglia, Italia): Santa Maria di Leuca, Pescoluse, Lido Marini, Lecce, Castrignano del Capo, Gallipoli, Otranto e Castro. Prenotazione diretta online tramite Kross Booking, senza commissioni di intermediari. Sito in italiano, inglese, francese, tedesco e spagnolo.
 
-Gestito da {ORG}, {ADDRESS}, P.IVA {VAT}. Telefono/WhatsApp: {PHONE} / +39 320 358 1118. Email: {EMAIL}.
+Gestito da {ORG}, {ADDRESS}, P.IVA {VAT}. Telefono e WhatsApp: {PHONE}. Email: {EMAIL}.
 
 ## Appartamenti (con link di prenotazione diretta)
 {apt_list}
