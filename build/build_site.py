@@ -58,11 +58,11 @@ HERO_SLIDES = [
 ]
 # etichette del box di ricerca nella hero
 SEARCH_I18N = {
-    'it': {'arrive': 'Arrivo', 'depart': 'Partenza', 'guests': 'Ospiti', 'zone': 'Zona', 'btn': 'Cerca', 'all_zones': 'Tutte le zone', 'title': 'Cerca la tua casa vacanza'},
-    'en': {'arrive': 'Check-in', 'depart': 'Check-out', 'guests': 'Guests', 'zone': 'Area', 'btn': 'Search', 'all_zones': 'All areas', 'title': 'Search your holiday home'},
-    'fr': {'arrive': 'Arrivée', 'depart': 'Départ', 'guests': 'Personnes', 'zone': 'Zone', 'btn': 'Rechercher', 'all_zones': 'Toutes les zones', 'title': 'Cherchez votre location'},
-    'de': {'arrive': 'Anreise', 'depart': 'Abreise', 'guests': 'Gäste', 'zone': 'Gebiet', 'btn': 'Suchen', 'all_zones': 'Alle Gebiete', 'title': 'Ferienhaus suchen'},
-    'es': {'arrive': 'Llegada', 'depart': 'Salida', 'guests': 'Huéspedes', 'zone': 'Zona', 'btn': 'Buscar', 'all_zones': 'Todas las zonas', 'title': 'Busca tu casa de vacaciones'},
+    'it': {'arrive': 'Arrivo', 'depart': 'Partenza', 'guests': 'Ospiti', 'zone': 'Zona', 'btn': 'Cerca', 'all_zones': 'Tutte le zone', 'title': 'Cerca la tua casa vacanza', 'pick': 'Seleziona', 'night': 'notte', 'nights': 'notti', 'close': 'Chiudi'},
+    'en': {'arrive': 'Check-in', 'depart': 'Check-out', 'guests': 'Guests', 'zone': 'Area', 'btn': 'Search', 'all_zones': 'All areas', 'title': 'Search your holiday home', 'pick': 'Select', 'night': 'night', 'nights': 'nights', 'close': 'Close'},
+    'fr': {'arrive': 'Arrivée', 'depart': 'Départ', 'guests': 'Personnes', 'zone': 'Zone', 'btn': 'Rechercher', 'all_zones': 'Toutes les zones', 'title': 'Cherchez votre location', 'pick': 'Choisir', 'night': 'nuit', 'nights': 'nuits', 'close': 'Fermer'},
+    'de': {'arrive': 'Anreise', 'depart': 'Abreise', 'guests': 'Gäste', 'zone': 'Gebiet', 'btn': 'Suchen', 'all_zones': 'Alle Gebiete', 'title': 'Ferienhaus suchen', 'pick': 'Auswählen', 'night': 'Nacht', 'nights': 'Nächte', 'close': 'Schließen'},
+    'es': {'arrive': 'Llegada', 'depart': 'Salida', 'guests': 'Huéspedes', 'zone': 'Zona', 'btn': 'Buscar', 'all_zones': 'Todas las zonas', 'title': 'Busca tu casa de vacaciones', 'pick': 'Elegir', 'night': 'noche', 'nights': 'noches', 'close': 'Cerrar'},
 }
 # lingua del motore Kross per ciascuna lingua del sito (Kross ha solo it/en)
 KROSS_LANG = {'it': 'it', 'en': 'en', 'fr': 'en', 'de': 'en', 'es': 'en'}
@@ -408,11 +408,14 @@ def build_home(lang):
     <form class="hero-search" id="heroSearch" autocomplete="off"
           data-kross="https://salentocasevacanze.kross.travel/{KROSS_LANG[lang]}/appartamenti"
           data-apts="{r}{lr}{s['apartments']}/"
+          data-night="{SEARCH_I18N[lang]['night']}" data-nights="{SEARCH_I18N[lang]['nights']}" data-close="{SEARCH_I18N[lang]['close']}"
           aria-label="{esc(SEARCH_I18N[lang]['title'])}">
-      <div class="hs-field"><label for="hsFrom">{SEARCH_I18N[lang]['arrive']}</label>
-        <input type="date" id="hsFrom" name="from"></div>
-      <div class="hs-field"><label for="hsTo">{SEARCH_I18N[lang]['depart']}</label>
-        <input type="date" id="hsTo" name="to"></div>
+      <div class="hs-field"><label for="hsFromBtn">{SEARCH_I18N[lang]['arrive']}</label>
+        <button type="button" class="hs-date" id="hsFromBtn" data-ph="{SEARCH_I18N[lang]['pick']}"></button>
+        <input type="hidden" id="hsFrom" name="from"></div>
+      <div class="hs-field"><label for="hsToBtn">{SEARCH_I18N[lang]['depart']}</label>
+        <button type="button" class="hs-date" id="hsToBtn" data-ph="{SEARCH_I18N[lang]['pick']}"></button>
+        <input type="hidden" id="hsTo" name="to"></div>
       <div class="hs-field"><label for="hsGuests">{SEARCH_I18N[lang]['guests']}</label>
         <select id="hsGuests" name="guests">{''.join(f'<option value="{n}"{" selected" if n == 2 else ""}>{n}</option>' for n in range(1, 11))}</select></div>
       <div class="hs-field"><label for="hsZone">{SEARCH_I18N[lang]['zone']}</label>

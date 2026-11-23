@@ -25,8 +25,8 @@
 <meta name="robots" content="index, follow, max-image-preview:large">
 <link rel="icon" type="image/png" href="../assets/img/opt/logo3-1.png">
 <script>window.SCV_GA="G-SQMRM03YG1";</script>
-<link rel="stylesheet" href="../assets/fonts/fonts.css?v=202611231644">
-<link rel="stylesheet" href="../assets/css/style.css?v=202611231644">
+<link rel="stylesheet" href="../assets/fonts/fonts.css?v=202611231647">
+<link rel="stylesheet" href="../assets/css/style.css?v=202611231647">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"TravelAgency","name":"Salento Case Vacanze srls",
 "url":"https://salentocasevacanze.com/","logo":"https://salentocasevacanze.com/assets/img/opt/logo3-1.png","image":"https://salentocasevacanze.com/assets/img/opt/tramonto-porto-santa-maria-di-leuca-salento.webp",
@@ -76,11 +76,14 @@
     <form class="hero-search" id="heroSearch" autocomplete="off"
           data-kross="https://salentocasevacanze.kross.travel/en/appartamenti"
           data-apts="../de/ferienwohnungen/"
+          data-night="Nacht" data-nights="Nächte" data-close="Schließen"
           aria-label="Ferienhaus suchen">
-      <div class="hs-field"><label for="hsFrom">Anreise</label>
-        <input type="date" id="hsFrom" name="from"></div>
-      <div class="hs-field"><label for="hsTo">Abreise</label>
-        <input type="date" id="hsTo" name="to"></div>
+      <div class="hs-field"><label for="hsFromBtn">Anreise</label>
+        <button type="button" class="hs-date" id="hsFromBtn" data-ph="Auswählen"></button>
+        <input type="hidden" id="hsFrom" name="from"></div>
+      <div class="hs-field"><label for="hsToBtn">Abreise</label>
+        <button type="button" class="hs-date" id="hsToBtn" data-ph="Auswählen"></button>
+        <input type="hidden" id="hsTo" name="to"></div>
       <div class="hs-field"><label for="hsGuests">Gäste</label>
         <select id="hsGuests" name="guests"><option value="1">1</option><option value="2" selected>2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option></select></div>
       <div class="hs-field"><label for="hsZone">Gebiet</label>
@@ -285,6 +288,6 @@
   <p>🍪 Diese Website verwendet Google Analytics nur mit Ihrer Einwilligung fuer anonyme Besuchsstatistiken (anonymisierte IP). Keine weiteren Profiling-Cookies. Sie koennen Ihre Wahl jederzeit ueber den Link "Cookie-Einstellungen" in der Fusszeile aendern. <a href="../de/datenschutz-und-cookies/">Datenschutz & Cookies</a></p>
   <button class="btn btn-outline" id="cookieNo" style="border:1.5px solid var(--ink-soft);color:var(--ink-soft)">Ablehnen</button><button class="btn btn-primary" id="cookieOk">Akzeptieren</button>
 </div>
-<script src="../assets/js/main.js?v=202611231644" defer></script>
+<script src="../assets/js/main.js?v=202611231647" defer></script>
 </body>
 </html>
